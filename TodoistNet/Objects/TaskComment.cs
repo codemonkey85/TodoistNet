@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TodoistNetTest.Helpers
+namespace TodoistNetTest.Objects
 {
     public class TaskComment
     {

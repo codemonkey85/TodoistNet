@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Todoist.Net;
 using Todoist.Net.Models;
@@ -21,15 +20,7 @@ namespace TodoistNetTest.Helpers
 
         public static async Task<Resources> GetResources(params ResourceType[] resourceTypes)
         {
-            Resources resources = null;
-            try
-            {
-                resources = await Client.GetResourcesAsync(resourceTypes);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
+            Resources resources = await Client.GetResourcesAsync(resourceTypes);
             return resources;
         }
     }

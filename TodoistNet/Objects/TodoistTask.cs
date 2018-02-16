@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-namespace TodoistNetTest.Helpers
+namespace TodoistNetTest.Objects
 {
     public class TodoistTask
     {
@@ -50,7 +50,6 @@ namespace TodoistNetTest.Helpers
             if (!(string.IsNullOrEmpty(commentString) || string.IsNullOrWhiteSpace(commentString))) commentString = string.Format("{0}{1}", Environment.NewLine, commentString);
             if (string.IsNullOrWhiteSpace(commentString)) commentString = string.Empty;
             string dateString = DueDateLocal.HasValue ? (IsAllDay ? DueDateLocal.Value.ToString("yyyy-MM-dd") : DueDateLocal.Value.ToString("yyyy-MM-dd hh:mm")) : string.Empty;
-            //return string.Format("- {0} @context({1}) @due({2}){3}", Content, ProjectName, dateString, commentString).Replace(@" @due()", string.Empty).Replace(@"@due()", string.Empty).Trim();
             return string.Format("- {0} @due({1}){2}", Content, dateString, commentString).Replace(@" @due()", string.Empty).Replace(@"@due()", string.Empty).Trim();
         }
     }
