@@ -24,21 +24,25 @@ namespace TodoistNetTest.Forms
         private void MainForm_Load(object sender, EventArgs e)
         {
             dgTasks.DataSource = _dgBindingSource;
-            string apiToken;
+            string apiToken = null;
 
             const string apiTokenFileName = @"todoist.apitoken";
             if (File.Exists(apiTokenFileName))
             {
                 apiToken = File.ReadAllText(apiTokenFileName);
             }
-            else
+
+            if (string.IsNullOrEmpty(apiToken) || string.IsNullOrWhiteSpace(apiToken))
             {
                 using (ApiTokenInputBox inputBox = new ApiTokenInputBox())
                 {
                     inputBox.ShowDialog();
                     apiToken = inputBox.ApiToken;
-                    File.CreateText(apiTokenFileName);
-                    File.WriteAllText(apiTokenFileName, apiToken);
+                    using (StreamWriter streamwriter = File.CreateText(apiTokenFileName))
+                    {
+                        streamwriter.Write(apiToken);
+                        streamwriter.Close();
+                    }
                 }
             }
 
